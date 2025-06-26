@@ -24,11 +24,11 @@ export const isAuth = async (
   try {
     const token = req.headers.token as string;
     if(!token) {
-      res.status(403).json({ message: "Please Login" });
+      res.status(403).json({ message: "Please Login not token" });
       return;
     }
-
-    const { data } = await axios.get(`${process.env.User_URL}/api/v1/user/me`, {
+    
+    const { data } = await axios.get(`${process.env.USER_URL}/api/v1/user/me`, {
       headers: {
         token,
       },
@@ -39,7 +39,7 @@ export const isAuth = async (
     next();
   } catch (error) {
     res.status(403).json({
-      message: "Please Login",
+      message: "Please Login some error happens",
     });
   }
 };
